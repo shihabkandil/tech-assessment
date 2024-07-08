@@ -4,152 +4,157 @@ part 'restaurants_response.freezed.dart';
 part 'restaurants_response.g.dart';
 
 @freezed
-class RestaurantsResponse with _$RestaurantsResponse {
-  const factory RestaurantsResponse({
-    String? id,
-    Address? address,
-    Menu? menu,
-    String? logo,
-    String? logoUrl,
-    String? photo,
-    String? photoUrl,
-    String? heroPhotoUrl,
-    String? locationMapUrl,
-    int? hygineRating,
-    String? rating,
-    int? affordability,
-    bool? hasReservation,
-    bool? hasOrder,
-    String? commissionRate,
-    int? baseDeliveryFee,
-    int? extraDeliveryFee,
-    int? adminFee,
-    String? averageDiningTime,
-    int? maxPeoplePerReservation,
-    int? reservationTimeInterval,
-    int? minOrderPrice,
-    bool? hasDelivery,
-    bool? hasCollection,
-    String? slug,
-    String? name,
-    String? phoneNumber,
-    String? email,
-    String? description,
-    Hours? hours,
-    String? stripeAccountId,
-    bool? isActive,
-    int? branding,
-    int? manager,
-    List<int>? tags,
-  }) = _RestaurantsResponse;
+class RestaurantResponse with _$RestaurantResponse {
+  const factory RestaurantResponse({
+    @JsonKey(name: "id") String? id,
+    @JsonKey(name: "address") ResponseAddress? address,
+    @JsonKey(name: "menu") ResponseMenu? menu,
+    @JsonKey(name: "logo") String? logo,
+    @JsonKey(name: "logo_url") String? logoUrl,
+    @JsonKey(name: "photo") String? photo,
+    @JsonKey(name: "photo_url") String? photoUrl,
+    @JsonKey(name: "hero_photo_url") String? heroPhotoUrl,
+    @JsonKey(name: "location_map_url") String? locationMapUrl,
+    @JsonKey(name: "hygine_rating") int? hygineRating,
+    @JsonKey(name: "rating") String? rating,
+    @JsonKey(name: "affordability") int? affordability,
+    @JsonKey(name: "has_reservation") bool? hasReservation,
+    @JsonKey(name: "has_order") bool? hasOrder,
+    @JsonKey(name: "commission_rate") String? commissionRate,
+    @JsonKey(name: "base_delivery_fee") int? baseDeliveryFee,
+    @JsonKey(name: "extra_delivery_fee") int? extraDeliveryFee,
+    @JsonKey(name: "admin_fee") int? adminFee,
+    @JsonKey(name: "average_dining_time") String? averageDiningTime,
+    @JsonKey(name: "max_people_per_reservation") int? maxPeoplePerReservation,
+    @JsonKey(name: "reservation_time_interval") int? reservationTimeInterval,
+    @JsonKey(name: "min_order_price") int? minOrderPrice,
+    @JsonKey(name: "has_delivery") bool? hasDelivery,
+    @JsonKey(name: "has_collection") bool? hasCollection,
+    @JsonKey(name: "slug") String? slug,
+    @JsonKey(name: "name") String? name,
+    @JsonKey(name: "phone_number") String? phoneNumber,
+    @JsonKey(name: "email") String? email,
+    @JsonKey(name: "description") String? description,
+    @JsonKey(name: "hours") ResponseHours? hours,
+    @JsonKey(name: "stripe_account_id") String? stripeAccountId,
+    @JsonKey(name: "is_active") bool? isActive,
+    @JsonKey(name: "branding") int? branding,
+    @JsonKey(name: "manager") int? manager,
+    @JsonKey(name: "tags") List<int?>? tags,
+  }) = _RestaurantResponse;
 
-  factory RestaurantsResponse.fromJson(Map<String, dynamic> json) =>
-      _$RestaurantsResponseFromJson(json);
+  factory RestaurantResponse.fromJson(Map<String, dynamic> json) =>
+      _$RestaurantResponseFromJson(json);
 }
 
 @freezed
-class Address with _$Address {
-  const factory Address({
-    int? id,
-    String? line1,
-    String? line2,
-    String? city,
-    String? postcode,
-  }) = _Address;
+class ResponseAddress with _$ResponseAddress {
+  const factory ResponseAddress({
+    @JsonKey(name: "id") int? id,
+    @JsonKey(name: "line1") String? line1,
+    @JsonKey(name: "line2") String? line2,
+    @JsonKey(name: "city") String? city,
+    @JsonKey(name: "postcode") String? postcode,
+  }) = _ResponseAddress;
 
-  factory Address.fromJson(Map<String, dynamic> json) =>
-      _$AddressFromJson(json);
+  factory ResponseAddress.fromJson(Map<String, dynamic> json) =>
+      _$ResponseAddressFromJson(json);
 }
 
 @freezed
-class Hours with _$Hours {
-  const factory Hours({
-    Day? friday,
-    Day? monday,
-    Day? sunday,
-    Day? tuesday,
-    Day? saturday,
-    Day? thursday,
-    Day? wednesday,
-  }) = _Hours;
+class ResponseHours with _$ResponseHours {
+  const factory ResponseHours({
+    @JsonKey(name: "friday") ResponseDay? friday,
+    @JsonKey(name: "monday") ResponseDay? monday,
+    @JsonKey(name: "sunday") ResponseDay? sunday,
+    @JsonKey(name: "tuesday") ResponseDay? tuesday,
+    @JsonKey(name: "saturday") ResponseDay? saturday,
+    @JsonKey(name: "thursday") ResponseDay? thursday,
+    @JsonKey(name: "wednesday") ResponseDay? wednesday,
+  }) = _ResponseHours;
 
-  factory Hours.fromJson(Map<String, dynamic> json) => _$HoursFromJson(json);
+  factory ResponseHours.fromJson(Map<String, dynamic> json) =>
+      _$ResponseHoursFromJson(json);
 }
 
 @freezed
-class Day with _$Day {
-  const factory Day({
-    String? closing,
-    String? opening,
-  }) = _Day;
+class ResponseDay with _$ResponseDay {
+  const factory ResponseDay({
+    @JsonKey(name: "closing") String? closing,
+    @JsonKey(name: "opening") String? opening,
+  }) = _ResponseDay;
 
-  factory Day.fromJson(Map<String, dynamic> json) => _$DayFromJson(json);
+  factory ResponseDay.fromJson(Map<String, dynamic> json) =>
+      _$ResponseDayFromJson(json);
 }
 
 @freezed
-class Menu with _$Menu {
-  const factory Menu({
-    int? id,
-    List<Item>? items,
-    String? name,
-    String? description,
-  }) = _Menu;
+class ResponseMenu with _$ResponseMenu {
+  const factory ResponseMenu({
+    @JsonKey(name: "id") int? id,
+    @JsonKey(name: "items") List<ResponseItem>? items,
+    @JsonKey(name: "name") String? name,
+    @JsonKey(name: "description") String? description,
+  }) = _ResponseMenu;
 
-  factory Menu.fromJson(Map<String, dynamic> json) => _$MenuFromJson(json);
+  factory ResponseMenu.fromJson(Map<String, dynamic> json) =>
+      _$ResponseMenuFromJson(json);
 }
 
 @freezed
-class Item with _$Item {
-  const factory Item({
-    int? id,
-    List<Option>? options,
-    Category? category,
-    String? name,
-    String? description,
-    int? price,
-    dynamic image,
-    String? photoUrl,
-    dynamic calories,
-    int? spicyLevel,
-    int? order,
-    bool? isAvailable,
-    bool? isPopular,
-    int? menu,
-    List<dynamic>? diataries,
-  }) = _Item;
+class ResponseItem with _$ResponseItem {
+  const factory ResponseItem({
+    @JsonKey(name: "id") int? id,
+    @JsonKey(name: "options") List<ResponseOption>? options,
+    @JsonKey(name: "category") ResponseCategory? category,
+    @JsonKey(name: "name") String? name,
+    @JsonKey(name: "description") String? description,
+    @JsonKey(name: "price") int? price,
+    @JsonKey(name: "image") dynamic image,
+    @JsonKey(name: "photo_url") String? photoUrl,
+    @JsonKey(name: "calories") dynamic calories,
+    @JsonKey(name: "spicy_level") int? spicyLevel,
+    @JsonKey(name: "order") int? order,
+    @JsonKey(name: "is_available") bool? isAvailable,
+    @JsonKey(name: "is_popular") bool? isPopular,
+    @JsonKey(name: "menu") int? menu,
+    @JsonKey(name: "diataries") List<dynamic>? diataries,
+  }) = _ResponseItem;
 
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+  factory ResponseItem.fromJson(Map<String, dynamic> json) =>
+      _$ResponseItemFromJson(json);
 }
 
 @freezed
-class Category with _$Category {
-  const factory Category({
-    int? id,
-    String? name,
-    String? description,
-    int? order,
-    dynamic menu,
-  }) = _Category;
+class ResponseCategory with _$ResponseCategory {
+  const factory ResponseCategory({
+    @JsonKey(name: "id") int? id,
+    @JsonKey(name: "name") String? name,
+    @JsonKey(name: "description") String? description,
+    @JsonKey(name: "order") int? order,
+    @JsonKey(name: "menu") dynamic menu,
+  }) = _ResponseCategory;
 
-  factory Category.fromJson(Map<String, dynamic> json) =>
-      _$CategoryFromJson(json);
+  factory ResponseCategory.fromJson(Map<String, dynamic> json) =>
+      _$ResponseCategoryFromJson(json);
 }
 
 @freezed
-class Option with _$Option {
-  const factory Option({
-    int? id,
-    String? name,
-    String? displayName,
-    int? price,
-    String? description,
-    bool? required,
-    String? type,
-    int? selectionLimit,
-    int? order,
-    bool? isActive,
-    dynamic menu,
-  }) = _Option;
+class ResponseOption with _$ResponseOption {
+  const factory ResponseOption({
+    @JsonKey(name: "id") int? id,
+    @JsonKey(name: "name") String? name,
+    @JsonKey(name: "display_name") String? displayName,
+    @JsonKey(name: "price") int? price,
+    @JsonKey(name: "description") String? description,
+    @JsonKey(name: "required") bool? required,
+    @JsonKey(name: "type") String? type,
+    @JsonKey(name: "selection_limit") int? selectionLimit,
+    @JsonKey(name: "order") int? order,
+    @JsonKey(name: "is_active") bool? isActive,
+    @JsonKey(name: "menu") dynamic menu,
+  }) = _ResponseOption;
 
-  factory Option.fromJson(Map<String, dynamic> json) => _$OptionFromJson(json);
+  factory ResponseOption.fromJson(Map<String, dynamic> json) =>
+      _$ResponseOptionFromJson(json);
 }
