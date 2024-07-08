@@ -50,3 +50,4 @@ app.*.map.json
 
 # Router related
 /lib/common/core/router/app_router.gr.dart
+/lib/common/core/injector/locator.config.dart
