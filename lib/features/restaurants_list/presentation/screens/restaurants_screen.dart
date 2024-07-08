@@ -2,9 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../common/extensions/context_extensions.dart';
+import '../../../../common/constants/strings.dart';
 import '../../../../common/constants/theme/app_theme_data.dart';
 import '../../../../common/constants/theme/app_colors.dart';
 import '../../../../common/widgets/loading_widget.dart';
+import '../../../../gen/assets.gen.dart';
 import '../cubits/restaurants_cubit.dart';
 import '../widgets/restaurant_card.dart';
 
@@ -22,8 +25,7 @@ class RestaurantsScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.white,
             centerTitle: false,
-            title: Image.asset(
-              "assets/images/logo.png",
+            title: Assets.images.logo.image(
               width: 90,
               height: 150,
             ),
@@ -36,7 +38,7 @@ class RestaurantsScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
                   sliver: SliverToBoxAdapter(
                     child: Text(
-                      'Our Restaurants',
+                      Strings.ourRestaurants,
                       style: context.textTheme.titleLarge
                           ?.copyWith(color: AppColors.black),
                     ),
@@ -52,7 +54,14 @@ class RestaurantsScreen extends StatelessWidget {
                       },
                       success: (restaurants) => SliverPadding(
                         padding: const EdgeInsets.all(8),
-                        sliver: SliverList(
+                        sliver: SliverGrid(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: context.isMobile ? 1 : 2,
+                            mainAxisSpacing: 12,
+                            crossAxisSpacing: 12,
+                            childAspectRatio: 3 / 1,
+                          ),
                           delegate: SliverChildBuilderDelegate(
                             (context, index) {
                               final restaurant = restaurants[index];

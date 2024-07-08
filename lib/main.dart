@@ -5,6 +5,8 @@ import 'common/core/injector/locator.dart';
 import 'common/core/router/app_router.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   configureDependencies();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
