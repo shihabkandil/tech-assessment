@@ -32,51 +32,55 @@ class RestaurantsScreen extends StatelessWidget {
           ),
           body: Padding(
             padding: const EdgeInsets.all(14),
-            child: CustomScrollView(
-              slivers: [
-                SliverPadding(
-                  padding: const EdgeInsets.all(8),
-                  sliver: SliverToBoxAdapter(
-                    child: Text(
-                      Strings.ourRestaurants,
-                      style: context.textTheme.titleLarge
-                          ?.copyWith(color: AppColors.black),
+            child: RefreshIndicator(
+              onRefresh: () async =>
+                  context.read<RestaurantsCubit>().getRestaurants(),
+              child: CustomScrollView(
+                slivers: [
+                  SliverPadding(
+                    padding: const EdgeInsets.all(8),
+                    sliver: SliverToBoxAdapter(
+                      child: Text(
+                        Strings.ourRestaurants,
+                        style: context.textTheme.titleLarge
+                            ?.copyWith(color: AppColors.black),
+                      ),
                     ),
                   ),
-                ),
-                BlocBuilder<RestaurantsCubit, RestaurantsState>(
-                  builder: (context, state) {
-                    return state.maybeWhen(
-                      orElse: () {
-                        return const SliverToBoxAdapter(
-                          child: LoadingWidget(),
-                        );
-                      },
-                      success: (restaurants) => SliverPadding(
-                        padding: const EdgeInsets.all(8),
-                        sliver: SliverGrid(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: context.isMobile ? 1 : 2,
-                            mainAxisSpacing: 12,
-                            crossAxisSpacing: 12,
-                            childAspectRatio: 3 / 1,
-                          ),
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              final restaurant = restaurants[index];
-                              return RestaurantCard(
-                                restaurant: restaurant,
-                              );
-                            },
-                            childCount: restaurants.length,
+                  BlocBuilder<RestaurantsCubit, RestaurantsState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        orElse: () {
+                          return const SliverToBoxAdapter(
+                            child: LoadingWidget(),
+                          );
+                        },
+                        success: (restaurants) => SliverPadding(
+                          padding: const EdgeInsets.all(8),
+                          sliver: SliverGrid(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: context.isMobile ? 1 : 2,
+                              mainAxisSpacing: 12,
+                              crossAxisSpacing: 12,
+                              childAspectRatio: 3 / 1,
+                            ),
+                            delegate: SliverChildBuilderDelegate(
+                              (context, index) {
+                                final restaurant = restaurants[index];
+                                return RestaurantCard(
+                                  restaurant: restaurant,
+                                );
+                              },
+                              childCount: restaurants.length,
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         );
