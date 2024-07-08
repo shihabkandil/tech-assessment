@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'common/constants/theme/app_theme_data.dart';
 import 'common/core/injector/locator.dart';
 import 'common/core/router/app_router.dart';
 
 void main() {
-
   configureDependencies();
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(
     App(appRouter: AppRouter()),
